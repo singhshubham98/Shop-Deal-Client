@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
+
+.thumbnail__card {
+  text-align: center;
+  padding: 1vw !important;
+}
+.thumbnail__card .thumbnail__wrapper {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.thumbnail__card .gameCardImage {
+  display: block;
+  position: relative;
+}
+.link {
+  background-color: transparent;
+  color: #d65611;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "Raleway", sans-serif;
+}
+.thumbnail__card .title {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.subtitle {
+  font-size: 14px;
+  margin: 2px 16px 0 16px;
+  font: 400 16px/28px Roboto, "Helvetica Neue", sans-serif;
+  text-decoration: none !important;
+
+  background-color: transparent;
+  color: black !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+.rate {
+  font: 400 14px/28px Roboto, "Helvetica Neue", sans-serif;
+}
+
+.sliderImage {
+  width: 150px !important;
+  height: 200px !important;
+}
+.actionButton {
+  display: block;
+}
+.freeTrial {
+  width: 100%;
+  padding: 10px 68px;
+  text-transform: uppercase;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  background-color: #d65611;
+  color: #fff;
+  font: 400 12px/20px Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: 0.3157px;
+  border-radius: 5px;
+  text-decoration: none !important;
+}
