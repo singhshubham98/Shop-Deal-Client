@@ -12,14 +12,14 @@ const Checkout = ({ products }) => {
     clientToken: null,
     error: "",
     instance: {},
-    address: ""
+    address: "",
   });
 
   const userId = isAuthenticated() && isAuthenticated().user._id;
   const token = isAuthenticated() && isAuthenticated().token;
 
   const getToken = (id, token) => {
-    getBraintreeClientToken(id, token).then(data => {
+    getBraintreeClientToken(id, token).then((data) => {
       if (data.error) {
         setData({ ...data, error: data.error });
       } else {
@@ -27,8 +27,10 @@ const Checkout = ({ products }) => {
       }
     });
   };
+
   useEffect(() => {
     getToken(userId, token);
+    // eslint-disable-next-line
   }, []);
 
   const getTotal = () => {
@@ -54,7 +56,7 @@ const Checkout = ({ products }) => {
     let nonce;
     data.instance
       .requestPaymentMethod()
-      .then(data => {
+      .then((data) => {
         console.log(data);
         nonce = data.nonce;
         // when you have nonce (card type, card number) send nonce as 'paymentMethodNonce'
@@ -62,11 +64,11 @@ const Checkout = ({ products }) => {
 
         const paymentData = {
           paymentMethodNonce: nonce,
-          amount: getTotal(products)
+          amount: getTotal(products),
         };
 
         processPayment(userId, token, paymentData)
-          .then(res => {
+          .then((res) => {
             setData({ ...data, success: res.success });
             emptyCart(() => {
               console.log("Payment success and empty cart");
@@ -74,9 +76,9 @@ const Checkout = ({ products }) => {
             // empty cart
             // create order
           })
-          .catch(error => console.log(error));
+          .catch((error) => console.log(error));
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         setData({ ...data, error: error.message });
       });
@@ -90,7 +92,7 @@ const Checkout = ({ products }) => {
             options={{
               authorization: data.clientToken,
               paypal: {
-                flow: "vault"
+                flow: "vault",
               },
               googlePay: {
                 googlePayVersion: 2,
@@ -98,15 +100,15 @@ const Checkout = ({ products }) => {
                 transactionInfo: {
                   totalPriceStatus: "FINAL",
                   totalPrice: getTotal(products),
-                  currencyCode: "INR"
+                  currencyCode: "INR",
                 },
                 cardRequirements: {
                   // We recommend collecting and passing billing address information with all Google Pay transactions as a best practice.
-                  billingAddressRequired: true
-                }
-              }
+                  billingAddressRequired: true,
+                },
+              },
             }}
-            onInstance={instance => (data.instance = instance)}
+            onInstance={(instance) => (data.instance = instance)}
           />
           <button onClick={buy} className="btn btn-success btn-block">
             Pay
@@ -116,7 +118,7 @@ const Checkout = ({ products }) => {
     </div>
   );
 
-  const showError = error => (
+  const showError = (error) => (
     <div
       className="alert alert-danger"
       style={{ display: error ? "" : "none" }}
@@ -125,7 +127,7 @@ const Checkout = ({ products }) => {
     </div>
   );
 
-  const showSuccess = success => (
+  const showSuccess = (success) => (
     <div
       className="alert alert-info"
       style={{ display: success ? "" : "none" }}

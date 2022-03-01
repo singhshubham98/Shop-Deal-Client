@@ -115,10 +115,10 @@ class Shop extends Component {
   handlePrice = (value) => {
     const data = prices;
     let array = [];
-
-    for (let key in data) {
-      if (data[key]._id === parseInt(value)) {
-        array = data[key].array;
+    // eslint-disable-next-line
+    for (let item in data) {
+      if (data[item]._id === parseInt(value)) {
+        array = data[item].array;
       }
     }
     return array;
