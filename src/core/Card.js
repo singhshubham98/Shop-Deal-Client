@@ -14,12 +14,12 @@ const Card = ({
   showAddToCartButton = true,
   showRemoveProductButton = false,
   description = false,
-  cartUpdate = false
+  cartUpdate = false,
 }) => {
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
 
-  const showViewButton = showViewProductButton =>
+  const showViewButton = (showViewProductButton) =>
     showViewProductButton && (
       <Link to={`/product/${product._id}`}>
         <button className="btn outline mt-2 mb-2">VIEW</button>
@@ -32,20 +32,20 @@ const Card = ({
     });
   };
 
-  const shouldRedirect = redirect => {
+  const shouldRedirect = (redirect) => {
     if (redirect) {
       return <Redirect to="/cart" />;
     }
   };
 
-  const showAddToCart = showAddToCartButton =>
+  const showAddToCart = (showAddToCartButton) =>
     showAddToCartButton && (
       <button onClick={addToCart} className="btn outline m-2">
         ADD TO CART
       </button>
     );
 
-  const showRemoveButton = showRemoveProductButton => {
+  const showRemoveButton = (showRemoveProductButton) => {
     return (
       showRemoveProductButton && (
         <button
@@ -60,7 +60,7 @@ const Card = ({
     );
   };
 
-  const showStock = quantity =>
+  const showStock = (quantity) =>
     quantity > 0 ? (
       <span className="badge badge-primary badge-pill ml-3">In Stock</span>
     ) : (
@@ -81,7 +81,7 @@ const Card = ({
     }
   };
 
-  const showCartUpdateOptions = cartUpdate =>
+  const showCartUpdateOptions = (cartUpdate) =>
     cartUpdate && (
       <div>
         <div className="input-group mb-3">
@@ -112,7 +112,6 @@ const Card = ({
             url="product"
             minHeight="200px"
             maxHeight="200px"
-            className="img-thumbnail"
           />
           <div className="card-block">
             <h6 className="card-title">{product.name}</h6>

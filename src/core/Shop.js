@@ -14,41 +14,41 @@ class Shop extends Component {
     newFilters: {
       filters: {
         category: [],
-        price: []
-      }
+        price: [],
+      },
     },
     limit: 8,
     skip: 0,
     size: 0,
-    filteredResult: []
+    filteredResult: [],
   };
 
   init = () => {
-    getCategories().then(data => {
+    getCategories().then((data) => {
       if (data.error) {
         this.setState({
-          error: data.error
+          error: data.error,
         });
       } else {
         this.setState({
-          categories: data
+          categories: data,
         });
       }
     });
   };
 
-  loadFilteredResult = newFilters => {
+  loadFilteredResult = (newFilters) => {
     getFilteredProducts(this.state.skip, this.state.limit, newFilters).then(
-      data => {
+      (data) => {
         if (data.error) {
           this.setState({
-            error: data.error
+            error: data.error,
           });
         } else {
           this.setState({
             filteredResult: data.data,
             size: data.size,
-            skip: 0
+            skip: 0,
           });
         }
       }
@@ -61,16 +61,16 @@ class Shop extends Component {
       toSkip,
       this.state.limit,
       this.state.newFilters.filters
-    ).then(data => {
+    ).then((data) => {
       if (data.error) {
         this.setState({
-          error: data.error
+          error: data.error,
         });
       } else {
         this.setState({
           filteredResult: [...this.state.filteredResult, ...data.data],
           size: data.size,
-          skip: toSkip
+          skip: toSkip,
         });
       }
     });
@@ -108,11 +108,11 @@ class Shop extends Component {
     }
     this.loadFilteredResult(this.state.newFilters.filters);
     this.setState({
-      newFilters
+      newFilters,
     });
   };
 
-  handlePrice = value => {
+  handlePrice = (value) => {
     const data = prices;
     let array = [];
 
@@ -138,7 +138,7 @@ class Shop extends Component {
             <ul>
               <Checkbox
                 categories={this.state.categories}
-                handleFilters={filters =>
+                handleFilters={(filters) =>
                   this.handleFilters(filters, "category")
                 }
               />
@@ -146,7 +146,7 @@ class Shop extends Component {
             <h4>Filter by price range</h4>
             <RadioBox
               prices={prices}
-              handleFilters={filters => this.handleFilters(filters, "price")}
+              handleFilters={(filters) => this.handleFilters(filters, "price")}
             />
           </div>
           <div className="col-9">
